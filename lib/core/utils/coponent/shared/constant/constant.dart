@@ -1,0 +1,7 @@
+import 'package:flutter/material.dart';
+
+const apiKey="dc4f2714b4dd31cfeec7da679034f08f";
+const apiToken="eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYzRmMjcxNGI0ZGQzMWNmZWVjN2RhNjc5MDM0ZjA4ZiIsIm5iZiI6MTc1MDg1MDY0MC45MDEsInN1YiI6IjY4NWJkYzUwNTlmZWFjNzY0Yjk0ZTI5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WFQdPuiqOkoeyROTigYOOuB7p2bt2So6vEj_Q6mBgLM";
+const kBackgroundColor=Colors.black;
+const imageUrl="https://image.tmdb.org/t/p/w500";
+
