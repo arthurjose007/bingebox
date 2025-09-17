@@ -1,16 +1,28 @@
-# netfo
+📺 BingeBox
 
-A new Flutter project.
+BingeBox is a Flutter application for browsing movies and TV shows using The Movie Database (TMDB) API.
+It provides an easy and interactive way for users to explore trending, upcoming, and popular content with a modern OTT-style interface.
 
-## Getting Started
+✨ Features
 
-This project is a starting point for a Flutter application.
+🎬 Browse Movies & TV Shows – Trending, upcoming, and popular sections
 
-A few resources to get you started if this is your first Flutter project:
+🔍 Search – Find any movie or show with ease
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📖 Details Page – Get complete info like overview, release date, rating, and more
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🎠 Carousel Sliders – Smooth horizontal scrolling for categories
+
+💡 Shimmer Loading – Clean loading UI experience
+
+📱 Cross-Platform – Runs on both Android & iOS
+
+🛠️ Tech Stack
+
+Framework: Flutter
+
+State Management: Provider
+
+API: The Movie Database (TMDB) API
+
+UI: Shimmer, Carousel Slider, Clean Material UI
