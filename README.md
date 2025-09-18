@@ -26,3 +26,5 @@ State Management: Provider
 API: The Movie Database (TMDB) API
 
 UI: Shimmer, Carousel Slider, Clean Material UI
+
+![image alt](https://github.com/arthurjose007/bingebox/blob/2e363fc9a0e9590862e1304aef008e5fc443bc32/images/screenshort/1.png)
