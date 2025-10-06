@@ -27,6 +27,7 @@ class NetworkApiServices extends BaseApiServices {
         Uri.parse(url),
         headers: headers,
       );
+      print(response.statusCode);
       responseJson = returnResponse(response);
     } on SocketException {
       throw InternetException('');

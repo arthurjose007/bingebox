@@ -26,11 +26,12 @@ class Homepage extends StatelessWidget {
     Size media = MediaQuery.of(context).size;
     return ChangeNotifierProvider(
       create: (context) => HomePageProvider()
-        ..tvSeriesController(context)
-        ..upcomingMoviesController(context)
-        ..nowplayingController(context)
-        ..topRatedController(context)
-        ..popularMovieController(context),
+        ..initializeData(context),
+        // ..tvSeriesController(context)
+        // ..upcomingMoviesController(context)
+        // ..nowplayingController(context)
+        // ..topRatedController(context)
+        // ..popularMovieController(context),
       child: Consumer<HomePageProvider>(
         builder: (context, value, child) {
           return Scaffold(

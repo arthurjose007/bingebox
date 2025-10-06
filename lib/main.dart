@@ -9,14 +9,20 @@ import 'feature/searchpage/controller/searchController.dart';
 import 'feature/searchpage/view/searchPage.dart';
 import 'feature/splashScreen/view/splashScreen.dart';
 import 'myhttpoverrides/myhttpoverride.dart';
+
 void main() {
-  HttpClient.enableTimelineLogging = false;
-  HttpOverrides.global = MyHttpOverrides();
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => HomePageProvider()),
-    ChangeNotifierProvider(create: (_) => SearchProvider()),
-    ChangeNotifierProvider(create: (_) => TabControllerProvider()),
-  ], child: const MyApp()));
+  // HttpClient.enableTimelineLogging = false;
+  // HttpOverrides.global = MyHttpOverrides();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomePageProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => TabControllerProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,14 +35,16 @@ class MyApp extends StatelessWidget {
       title: 'BingeBox',
       theme: ThemeData(
         textTheme: TextTheme(
-            bodyLarge: TextStyle(color: Colors.black, fontSize: 24),
-            bodyMedium: TextStyle(color: Colors.black, fontSize: 24)),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-            .copyWith(background: Colors.black),
+          bodyLarge: TextStyle(color: Colors.black, fontSize: 24),
+          bodyMedium: TextStyle(color: Colors.black, fontSize: 24),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ).copyWith(background: Colors.black),
         fontFamily: GoogleFonts.ptSans().fontFamily,
         useMaterial3: true,
       ),
-      home:Splashscreen()
+      home: Splashscreen(),
       //SearchPage()
     );
   }

@@ -13,25 +13,55 @@ import 'package:http/http.dart' as http;
 import '../repository/homePage_repo.dart';
 
 class HomePageProvider extends ChangeNotifier {
-  HomePageProvider() {
-
+  bool isLoading = false;
+  bool nowisLoading = false;
+  bool topRatedIsLoading = false;
+  bool popularIsLoading = false;
+  bool tvisLoading = false;
+  HomePageProvider(){
+    isLoading=true;
+    nowisLoading=true;
+    topRatedIsLoading=true;
+    popularIsLoading=true;
+    tvisLoading=true;
   }
   List<Results> movie = [];
   List<Results> nowPlayMovie = [];
   List<Results> topRated = [];
   List<Results> popularList = [];
   List<ResultsTv> tvResult = [];
-  bool isLoading = false;
-  bool nowisLoading = false;
-  bool topRatedIsLoading = false;
-  bool popularIsLoading = false;
-  bool tvisLoading = false;
+
   final _api = UpcomingMovieRepo();
   String upcomingerrrormessage = '';
   String nowplayingerrrormessage = '';
   String topRatederrrormessage = '';
   String popularMovieerrrormessage = '';
   String tvSerieserrrormessage = '';
+  bool _isLoading = true;
+  bool _hasError = false;
+  bool get isLoadings => _isLoading;
+  bool get hasError => _hasError;
+
+  Future<void> initializeData(BuildContext context) async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+
+      // Load sequentially or in a specific order
+      await popularMovieController(context);
+      await topRatedController(context);
+      await nowplayingController(context);
+      await upcomingMoviesController(context);
+      await tvSeriesController(context);
+
+    } catch (e) {
+      _hasError = true;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
 ///Upcoming Movies Controller
   Future<void> upcomingMoviesController(BuildContext context) async {
     try {

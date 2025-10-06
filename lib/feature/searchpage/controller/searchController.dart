@@ -10,6 +10,19 @@ import '../model/searchMoviemodel.dart';
 import '../repository/search_repo.dart';
 
 class SearchProvider extends ChangeNotifier {
+  bool searchIsLoading = false;
+  bool movieDetLoading = false;
+  bool tvDetLoading = false;
+  bool recommendationIsLoading = false;
+  bool tvrecommendationIsLoading = false;
+  SearchProvider(){
+    searchIsLoading=true;
+    movieDetLoading=true;
+    tvDetLoading=true;
+    recommendationIsLoading=true;
+    tvrecommendationIsLoading=true;
+  }
+
   final TextEditingController textController = TextEditingController();
 
   List<SearchResults> searcList = [];
@@ -17,11 +30,7 @@ class SearchProvider extends ChangeNotifier {
   List<MovieDetailModel> tvDetailsList = [];
   List<RecommendationsModel> recommendationList = [];
   List<RecommendationsModel> tvrecommendationList = [];
-  bool searchIsLoading = false;
-  bool movieDetLoading = false;
-  bool tvDetLoading = false;
-  bool recommendationIsLoading = false;
-  bool tvrecommendationIsLoading = false;
+
   final _api = SearchRepo();
   String errorMessage = '';
   String movieDetErrorMessage = '';
@@ -40,6 +49,7 @@ class SearchProvider extends ChangeNotifier {
       final response = await _api.searchMovie(search);
 
       if (response != null && response['status'] == 200) {
+        print("this is");
         // var tvSeriesModel = TvSeriesModel.fromJson(response["data"]);
         // tvResult =  List<ResultsTv>.from(tvSeriesModel.results ?? []);
         searcList = (response["data"]['results'] as List).map((item) {

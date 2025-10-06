@@ -21,8 +21,8 @@ class BrokenImageView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
                     color: Colors.white.withOpacity(0.2),
-                    height: size.height * 0.370,
-                    width: size.width * 0.195,
+                    height: size.height * 0.230,
+                    width: size.width * 0.295,
                     child: Center(
                       child: Icon(Icons.broken_image),
                     ),

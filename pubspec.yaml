@@ -43,6 +43,7 @@ dependencies:
   carousel_slider: ^5.1.1
   cached_network_image: ^3.4.1
   intl: ^0.20.2
+  connectivity_plus: ^7.0.0
 
 
 
