@@ -14,6 +14,8 @@ import 'myhttpoverrides/myhttpoverride.dart';
 void main() {
   // HttpClient.enableTimelineLogging = false;
   // HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     MultiProvider(
       providers: [
