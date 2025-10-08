@@ -5,7 +5,7 @@ import '../../../../../../feature/searchpage/view/detailPage.dart';
 import '../../constant/constant.dart';
 
 class CustomListviewImage extends StatelessWidget {
-  List<Results> results;
+  List<ResultModel> results;
   int length;
   Size size;
 

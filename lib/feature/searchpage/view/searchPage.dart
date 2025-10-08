@@ -14,7 +14,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SearchProvider(),
+      create: (context) => SearchProvider()..upcomingMoviesController(context),
       child: Consumer<SearchProvider>(builder: (context, provider, child) {
         return SafeArea(
           child: Scaffold(
@@ -62,12 +62,7 @@ class SearchPage extends StatelessWidget {
                           .toList();
 
                       return provider.textController.text.isEmpty
-                          ? ChangeNotifierProvider(
-                              create: (context) => HomePageProvider()
-                                ..upcomingMoviesController(context),
-                              child: Consumer<HomePageProvider>(
-                                  builder: (context, homeProvider, child) {
-                                return HomePageProvider().isLoading
+                          ?  provider.isLoadingupcoming
                                     ? Searchonloadshimmer()
                                     : Column(
                                         crossAxisAlignment:
@@ -90,7 +85,7 @@ class SearchPage extends StatelessWidget {
                                                 crossAxisSpacing: 5,
                                               ),
                                               itemCount:
-                                                  homeProvider.movie.length,
+                                                  provider.movieList.length,
                                               itemBuilder: (context, index) {
                                                 return Container(
                                                   padding: EdgeInsets.all(10),
@@ -103,8 +98,8 @@ class SearchPage extends StatelessWidget {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) => DetailPage(
-                                                                  movieId: homeProvider
-                                                                          .movie[
+                                                                  movieId: provider
+                                                                          .movieList[
                                                                               index]
                                                                           .id ??
                                                                       0)));
@@ -119,7 +114,7 @@ class SearchPage extends StatelessWidget {
                                                           child:
                                                               CachedNetworkImage(
                                                             imageUrl:
-                                                                "$imageUrl${homeProvider.movie[index].backdropPath}",
+                                                                "$imageUrl${provider.movieList[index].backdropPath}",
                                                             fit: BoxFit.cover,
                                                             height: 240,
                                                             width: 130,
@@ -150,8 +145,8 @@ class SearchPage extends StatelessWidget {
                                                             width: 40),
                                                         Expanded(
                                                           child: Text(
-                                                            homeProvider
-                                                                .movie[index]
+                                                            provider
+                                                                .movieList[index]
                                                                 .title
                                                                 .toString(),
                                                             maxLines: 2,
@@ -173,8 +168,8 @@ class SearchPage extends StatelessWidget {
                                             ),
                                           ),
                                         ],
-                                      );
-                              }),
+
+
                             )
                           : validItems.isEmpty?
 

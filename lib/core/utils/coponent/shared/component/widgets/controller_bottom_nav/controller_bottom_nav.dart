@@ -8,7 +8,6 @@ class TabControllerProvider with ChangeNotifier {
   int get currentIndex => _currentIndex;
 
   void setController(TabController controller) {
-    // Remove listener from old controller if exists
     if (_tabController != null && _tabController!.hasListeners) {
       _tabController!.removeListener(_handleTabChange);
     }

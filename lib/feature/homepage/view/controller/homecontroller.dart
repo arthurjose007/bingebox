@@ -25,10 +25,12 @@ class HomePageProvider extends ChangeNotifier {
     popularIsLoading=true;
     tvisLoading=true;
   }
-  List<Results> movie = [];
-  List<Results> nowPlayMovie = [];
-  List<Results> topRated = [];
-  List<Results> popularList = [];
+   // bool isLoading = false;
+
+  List<ResultModel> movie = [];
+  List<ResultModel> nowPlayMovie = [];
+  List<ResultModel> topRated = [];
+  List<ResultModel> popularList = [];
   List<ResultsTv> tvResult = [];
 
   final _api = UpcomingMovieRepo();
@@ -64,16 +66,17 @@ class HomePageProvider extends ChangeNotifier {
 
 ///Upcoming Movies Controller
   Future<void> upcomingMoviesController(BuildContext context) async {
+    isLoading = true;
+
     try {
-      isLoading = true;
       notifyListeners();
       final response = await _api.upcomingRepo();
       print("response of the data");
-      // print(response["data"]['results']);
+      print(response["data"]['results']);
 
       if (response != null && response['status'] == 200) {
         final items = (response["data"]['results'] as List)
-            .map((item) => Results.fromJson(item))
+            .map((item) => ResultModel.fromJson(item))
             .toList();
         movie = items;
         notifyListeners();
@@ -119,7 +122,7 @@ class HomePageProvider extends ChangeNotifier {
 
       if (response != null && response['status'] == 200) {
         final items = (response["data"]['results'] as List)
-            .map((item) => Results.fromJson(item))
+            .map((item) => ResultModel.fromJson(item))
             .toList();
         nowPlayMovie = items;
         // nowPlayMovie.sort((a, b) => a.length.compareTo(b.length));
@@ -167,7 +170,7 @@ class HomePageProvider extends ChangeNotifier {
 
       if (response != null && response['status'] == 200) {
         final items = (response["data"]['results'] as List)
-            .map((item) => Results.fromJson(item))
+            .map((item) => ResultModel.fromJson(item))
             .toList();
         topRated = items;
         notifyListeners();
@@ -213,7 +216,7 @@ class HomePageProvider extends ChangeNotifier {
 
       if (response != null && response['status'] == 200) {
         final items = (response["data"]['results'] as List)
-            .map((item) => Results.fromJson(item))
+            .map((item) => ResultModel.fromJson(item))
             .toList();
         popularList = items;
         popularList.shuffle();

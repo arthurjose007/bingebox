@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'core/utils/coponent/shared/component/widgets/bottom_nav.dart';
 import 'core/utils/coponent/shared/component/widgets/controller_bottom_nav/controller_bottom_nav.dart';
 import 'feature/homepage/view/controller/homecontroller.dart';
+import 'feature/hotAndNew/view/controlller/hotAndNew.dart';
 import 'feature/searchpage/controller/searchController.dart';
 import 'feature/searchpage/view/searchPage.dart';
 import 'feature/splashScreen/view/splashScreen.dart';
@@ -19,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => HomePageProvider()),
         ChangeNotifierProvider(create: (_) => SearchProvider()),
         ChangeNotifierProvider(create: (_) => TabControllerProvider()),
+        ChangeNotifierProvider(create: (_) => HotReloadController()),
       ],
       child: const MyApp(),
     ),

@@ -6,17 +6,18 @@ import '../../../../core/utils/coponent/shared/component/widgets/shimmers/hotand
 import '../../../../core/utils/coponent/shared/constant/constant.dart';
 import '../../../homepage/view/controller/homecontroller.dart';
 import '../../../homepage/view/model/upcomingmodel.dart';
+import '../controlller/hotAndNew.dart';
 
 class CommingSoonMovies extends StatelessWidget {
   int selectedone = 0;
   CommingSoonMovies({super.key, required this.selectedone});
-  List<Results> movieListData = [];
+  List<ResultModel> movieListData = [];
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) {
-        final provider = HomePageProvider();
+        final provider = HotReloadController();
         // Call the appropriate controller based on selectedone
         if (selectedone == 0) {
           provider.upcomingMoviesController(context);
@@ -26,7 +27,7 @@ class CommingSoonMovies extends StatelessWidget {
         return provider;
       },
 
-      child: Consumer<HomePageProvider>(
+      child: Consumer<HotReloadController>(
         builder: (context, homeProvider, child) {
           if (selectedone == 0) {
             movieListData = homeProvider.movie;

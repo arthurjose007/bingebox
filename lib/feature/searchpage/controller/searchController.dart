@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../../../core/utils/coponent/shared/component/widgets/custom_alert.dart';
 import '../../../core/utils/coponent/shared/component/widgets/custom_tost.dart';
 
+import '../../homepage/view/model/upcomingmodel.dart';
 import '../model/RecommendationsModel.dart';
 import '../model/movieDetailModdel.dart';
 import '../model/searchMoviemodel.dart';
@@ -13,11 +14,13 @@ class SearchProvider extends ChangeNotifier {
   bool searchIsLoading = false;
   bool movieDetLoading = false;
   bool tvDetLoading = false;
+  bool isLoadingupcoming = false;
   bool recommendationIsLoading = false;
   bool tvrecommendationIsLoading = false;
   SearchProvider(){
     searchIsLoading=true;
     movieDetLoading=true;
+    isLoadingupcoming=true;
     tvDetLoading=true;
     recommendationIsLoading=true;
     tvrecommendationIsLoading=true;
@@ -26,6 +29,7 @@ class SearchProvider extends ChangeNotifier {
   final TextEditingController textController = TextEditingController();
 
   List<SearchResults> searcList = [];
+  List<ResultModel> movieList = [];
   List<MovieDetailModel> movieDetailsList = [];
   List<MovieDetailModel> tvDetailsList = [];
   List<RecommendationsModel> recommendationList = [];
@@ -34,10 +38,61 @@ class SearchProvider extends ChangeNotifier {
   final _api = SearchRepo();
   String errorMessage = '';
   String movieDetErrorMessage = '';
+  String upcomingerrrormessage = '';
   String tvDetailsErrorMessage = '';
   String tvrecommendationErrorMessage = '';
   void searchClear() {
     searcList.clear();
+    notifyListeners();
+  }
+  Future<void> upcomingMoviesController(BuildContext context) async {
+    isLoadingupcoming = true;
+
+    try {
+      notifyListeners();
+      final response = await _api.upcomingRepo();
+      print("response of the data");
+      print(response["data"]['results']);
+
+      if (response != null && response['status'] == 200) {
+        final items = (response["data"]['results'] as List)
+            .map((item) => ResultModel.fromJson(item))
+            .toList();
+        movieList = items;
+        notifyListeners();
+      } else if (response != null && response['status'] == 500) {
+        upcomingerrrormessage = response['data'];
+        CustomToast.showCustomErrorToast(
+            message: "${response['status_message']}");
+        notifyListeners();
+      } else if (response != null && response['status'] == 404) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          CustomAlertDialog.showCustomAlertDialog(
+            context: context,
+            title: 'Failed',
+            message: "${response['data']['status_message']}",
+            cancelText: 'Ok',
+            onCancelPressed: () {
+              Navigator.of(context).pop();
+            },
+          );
+        });
+        notifyListeners();
+      } else {
+        CustomToast.showCustomErrorToast(message: "Unexpected error occurred");
+        notifyListeners();
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error: $e");
+      }
+    } finally {
+
+      isLoadingupcoming = false;
+      print(isLoadingupcoming);
+      notifyListeners();
+    }
+    isLoadingupcoming = false;
     notifyListeners();
   }
 

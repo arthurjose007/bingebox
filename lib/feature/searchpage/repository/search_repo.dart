@@ -16,6 +16,10 @@ class SearchRepo {
     // print(response);
     return response;
   }
+  Future<dynamic> upcomingRepo()async{
+    dynamic response=await _apiService.getApi("${ApiEndPoints.baseURL}${ApiEndPoints.upcomingMovie}$key",);
+    return response;
+  }
   Future<dynamic> movieDetailPage(int movieId) async {
     dynamic response = await _apiService.getApi(
         "${ApiEndPoints.baseURL}${ApiEndPoints.detailOfMovie}$movieId",

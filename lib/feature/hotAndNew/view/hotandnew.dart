@@ -43,7 +43,7 @@ class Hotandnew extends StatelessWidget {
                 indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: AppColor.primaryColor),
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: EdgeInsets.symmetric(horizontal: 40),
                 dividerColor: AppColor.backGroundColor,
                 labelColor: AppColor.backGroundColor,
                 unselectedLabelColor: AppColor.primaryColor,
